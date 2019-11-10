@@ -5,13 +5,13 @@
 {더 지니어스 - 룰브레이커 8화에 나온 마이너스 경매를 바탕으로, socket을 사용하여 다인용 게임을 설계}
 
 ## 2. 동기
-{방학 중에 친구들과 모여 더 지니어스를 본 기억을 되살려 이 게임을 선정}
+{방학 중에 친구들과 함께 호텔 방에서 모여있을 당시 TV에서 출연자들이 심리게임을 진행하는 더 지니어스라는 프로그램을 우연히 보게 되었다. 게임의 규칙에 대해 설명하는 장면을 보면서 상당히 참신하면서도 즐겁게 할 수 있는 게임이라는 생각이 들었다. 마침 친구들끼리 놀거리를 찾고 있었기 때문에 TV에 나오는 게임을 직접 해보면 좋겠다고 생각하였다. 하지만 당장 게임을 플레이하기 위해 필요한 도구들이 없었기 때문에 결국 포기했던 기억이 있다. 이번 프로젝트를 통해 이 게임을 프로그램으로 구현하여 친구들과 함께 즐겨보고자 한다.}
 
 ## 3. 프로그램 사용 대상
 {모든 사람}
 
 ## 4. 목적
-{}
+{본 게임의 가장 큰 목적은 남녀노소 모두가 즐길 수 있는 게임의 제작이다.}
 
 ## 5. 주요기능
 
@@ -20,15 +20,18 @@
 이 프로젝트의 핵심은 함께 즐길 수 있는 게임이다. 따라서 많은 사람을 수용가능하고, 각 플레이어가 즐거운 게임을 즐길 수 있는 프로젝트를 제작하는 것이 본 프로젝트의 핵심이다.
 
 ## 7. 구현에 필요한 라이브러리나 기술
-{pygame, matplotlib,  ...}
+{socket, pygame ...}
 
 ## 8. **분업 계획**
 
+pygame -> 유재우
+socket -> 오은호
+main, GUI -> 김태웅
 
 ## 9. 기타
 
 <hr>
 
-#### readme 작성관련 참고하기 [바로가기](https://heropy.blog/2017/09/30/markdown/)
-
-#### 예시 계획서 [[예시 1]](https://docs.google.com/document/d/1hcuGhTtmiTUxuBtr3O6ffrSMahKNhEj33woE02V-84U/edit?usp=sharing) | [[예시 2]](https://docs.google.com/document/d/1FmxTZvmrroOW4uZ34Xfyyk9ejrQNx6gtsB6k7zOvHYE/edit?usp=sharing) | [[예시 3]](https://github.com/goldmango328/2018-OOP-Python-Light) | [[예시4]](https://github.com/ssy05468/2018-OOP-Python-lightbulb) | [[모두보기]](https://github.com/kadragon/oop_project_ex/network/members)
+## 10. 참고자료
+더 지니어스 룰 설명 - https://www.youtube.com/watch?v=C8I7RIB9Ho8&feature=emb_logo
+비슷한 보드게임, 노땡스 룰 설명 - https://www.youtube.com/watch?v=-w7ly7Gqej8
