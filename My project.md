@@ -30,8 +30,10 @@ main, GUI -> 김태웅
 
 ## 9. 기타
 
-<hr>
 
 ## 10. 참고자료
 더 지니어스 룰 설명 - https://www.youtube.com/watch?v=C8I7RIB9Ho8&feature=emb_logo
+
 비슷한 보드게임, 노땡스 룰 설명 - https://www.youtube.com/watch?v=-w7ly7Gqej8
+
+<hr>
