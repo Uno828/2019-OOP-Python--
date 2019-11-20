@@ -1,5 +1,5 @@
 import random
-
+import pygame
 
 class human:
     def __init__(self, player, coin):
@@ -8,6 +8,8 @@ class human:
         self.card = []
         self.score = 0
 
+
+white = (255, 255, 255)
 
 def rule():
     print("1) 본 게임은 1p ~ np 순서대로 진행되며 미리 순서를 정해주세요.")
@@ -32,7 +34,6 @@ print("ZG(즐거운 게임)")
 people = []
 
 n = input("몇명이에요?\n>")
-
 n = int(n)
 
 for i in range(n):  # n명 가정, 0~n-1
