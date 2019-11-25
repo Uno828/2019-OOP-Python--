@@ -75,7 +75,8 @@ while len(deck):
                     people[turn].player, num, stacked_coin))
             if chk == "help":
                 print(
-                    "누군가의 카드가 궁금하면 card 를 입력하세요.\n규칙이 궁금하시다면 rule 을 입력하세요.\n당신의 칩 개수가 궁금하면 chip 을 입력하세요\n다른 사람의 칩 개수는 알 수 없습니다.")
+                    "누군가의 카드가 궁금하면 card 를 입력하세요.\n규칙이 궁금하시다면 rule 을 입력하세요.\n당신의 칩 개수가 궁금하면 chip 을 입력하세요\n다른 사람의 칩 개수는 "
+                    "알 수 없습니다.")
             if chk == "card":
                 who = input("누구의 카드를 보시겠습니다? 1p~{0}p".format(n))
                 who = int(who)
