@@ -1,4 +1,5 @@
 import random
+import time
 
 
 class human:
@@ -7,6 +8,18 @@ class human:
         self.coin = coin
         self.card = []
         self.score = 0
+
+    def calculate(self):
+        self.card.sort(reverse=True)
+        self.score = self.coin
+        back_num = 0
+
+        for i in range(len(self.card)):
+            if self.card[i] == back_num - 1:
+                pass
+            else:
+                self.score += self.card[i]
+            back_num = self.card[i]
 
 
 def rule():
@@ -53,58 +66,67 @@ while len(a):
         turn += 1  # 다음 사람으로 넘기기
         turn = turn % n  # 계산
         if not people[turn].coin:  # 칩없으면 바로 끝
-            print("{0}p님, 당신은 칩이 없습니다.".format(turn + 1), end=' ')
+            print("%dp님, 당신은 칩이 없습니다." % (turn + 1), end=' ')
             break
         while not (chk == "0" or chk == "1"):
             chk = input(
-                "{0}p님, 당신의 칩 개수는 {1}개이고, 현재 숫자는 {2}, {3}개의 칩이 쌓여있습니다.\n낙찰하시겠습니까?(패스:1,낙찰:0,도움말:help)".format(
-                    people[turn].player, people[turn].coin, num, stacked_coin))
+                "{0}p님, 현재 숫자는 {1}, {2}개의 칩이 쌓여있습니다.\n낙찰하시겠습니까?(패스:1,낙찰:0,도움말:help)".format(
+                    people[turn].player, num, stacked_coin))
             if chk == "help":
-                print("누군가의 카드가 궁금하면 card 를 입력하세요.\n규칙이 궁금하시다면 rule 을 입력하세요.\n다른 사람의 칩 개수는 알 수 없습니다.")
+                print(
+                    "누군가의 카드가 궁금하면 card 를 입력하세요.\n규칙이 궁금하시다면 rule 을 입력하세요.\n당신의 칩 개수가 궁금하면 chip 을 입력하세요\n다른 사람의 칩 개수는 알 수 없습니다.")
             if chk == "card":
                 who = input("누구의 카드를 보시겠습니다? 1p~{0}p".format(n))
-                print("{0}p의 카드 : ".format(who), end='')
                 who = int(who)
+                print("%dp의 카드 : " % who, end='')
                 for i in range(len(people[who - 1].card)):
-                    print("{0} ".format(people[who - 1].card[i]), end='')
+                    print("%d " % people[who - 1].card[i], end='')
                 print("")
             if chk == "rule":
                 print("<RULE>")
                 rule()
+            if chk == "chip":
+                print("당신의 칩은 %d개 입니다." % people[turn].coin)
+                time.sleep(1.5)
+                print("다른 사람 보기 방지용\n" * 10)
 
         chk = int(chk)
 
         if chk:
             stacked_coin += 1  # 패스하면, 칩 개수 올리고
             people[turn].coin -= 1  # 가진 칩 줄이기
-    print("{0}p님, 낙찰되었습니다.".format(turn + 1))  # 낙찰된 상황
+    print("%dp님, 낙찰되었습니다." % (turn + 1))  # 낙찰된 상황
     people[turn].coin += stacked_coin  # 칩 개수만큼 올렺고
     people[turn].card.append(num)  # 갖고 있는 카드에 추가
     a.remove(num)  # 방금 카드 지워버리기
 
-for i in range(n):
-    people[i].card.sort()
-    people[i].score = people[i].coin
+# ranking = []
+#
+# for i in range(n):
+#     ranking.append(people[i].score)
+#
+# ranking.sort(reverse=True)
+#
+# print("-----RANKING-----")
+# for i in range(n):
+#     for j in range(n):
+#         if ranking[i] == people[j].score:
+#             print("{0}.{1}p : {2}점".format(i + 1, people[j].player, people[j].score))
 
-back_num = 0
-
 for i in range(n):
+    people[i].calculate()
+
+print("-----CARD-----")
+for i in range(n):
+    print("%dp : " % people[i].player, end='')
     for j in range(len(people[i].card)):
-        if people[i].card[j] == back_num + 1:
-            pass
-        else:
-            people[i].score += people[i].card[j]
-        back_num = people[i].card[j]
+        print("%d" % people[i].card[j], end=' ')
+    print("\nChip: %d" % people[i].coin)
+    print()
 
-ranking = []
-
-for i in range(n):
-    ranking.append(people[i].score)
-
-ranking.sort(reverse=True)
+people.sort(key=lambda rank: rank.score, reverse=True)
 
 print("-----RANKING-----")
-for i in range(n):
-    for j in range(n):
-        if ranking[i] == people[j].score:
-            print("{0}.{1}p : {2}점".format(i + 1, people[j].player, people[j].score))
+
+for i in range(len(people)):
+    print("{0}등 - {1}p : {2}points ".format(i + 1, people[i].player, people[i].score))
