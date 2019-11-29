@@ -37,7 +37,7 @@ def image_show(image, x, y, screen):
 
 
 def text_show(txt, size, x, y, screen):
-    fontObj = pygame.font.Font('myfont.ttf', size)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 size로 한다
+    fontObj = pygame.font.Font('맑은고딕.ttf', size)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 size로 한다
     textSurfaceObj = fontObj.render(txt, True,
                                     Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
     # 나타낸다

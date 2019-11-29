@@ -4,9 +4,14 @@ import pygame
 from func import *
 
 
-class human:
+class Picture:
+    def __init__(self):
+        self.remain_card = 33
+        self.remain_coin = 0
+
+class human(Picture):
     def __init__(self, player, coin):
-        self.player = player + 1  # player 몇번째 사람인가? ->
+        self.player = player + 1  # player 몇번째 사람인가?
         self.coin = coin  # 칩의 개수
         self.card = []  # 보유한 카드
         self.score = 0  # 최종 스코어
