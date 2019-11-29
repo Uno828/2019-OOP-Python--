@@ -15,6 +15,3 @@ def num_check(event):
 
 def card_show(card_num): #화면에 선택된 카드를 띄워주는 함수
     pass
-
-def
-
