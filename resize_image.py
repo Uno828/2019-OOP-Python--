@@ -9,9 +9,9 @@
 
 from PIL import Image
 
-im = Image.open('image/3'+'.png')
+im = Image.open('image/' + 'p' + '_emt' + '.png')
 
 # 크기를 600x600 으로
-maxsize = (59, 87.114)
+maxsize = (100.456,100.456)
 im.thumbnail(maxsize, Image.ANTIALIAS)
-im.save('image/3-(1)'+'.png')
+im.save('image/' + 'p' + '_emt' + '- 작은 버전' + '.png')
