@@ -111,4 +111,4 @@ player_card_loc = [[248.279, 162.888], [248.279, 267.055], [248.279, 377.222], [
 def turn_change(turn, people, remain_card, remain_coin):  # turn은 바뀐 턴을 받는 것임
     return make_class().human(turn, people[turn].coin, remain_card, remain_coin)
 
-def update(chaged_player):
+def update(changed_player):
