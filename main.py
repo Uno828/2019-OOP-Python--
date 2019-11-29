@@ -39,7 +39,7 @@ if __name__ == '__main__':
             screen.blit(main_screen, (0, 0))
             pygame.display.flip()
             for i in range(n):  # n명 가정, 0~n-1
-                people.append(human(i, 20))
+                people.append(human(i, 9,0,0))
 
             deck = []  # 턴에 결정될 카드
             for i in range(-35, -2):  # 현재 카드가 -3 ~ -35까지 모두 append
@@ -57,8 +57,7 @@ if __name__ == '__main__':
                 while chk:  # 낙찰받는 사람 결정
                     turn += 1  # 다음 사람으로 넘기기
                     turn = turn % n  # 계산
-                    changed_player = turn_change(turn, people, len(deck),stacked_coin)
-                    update(changed_player)
+                    turn_change(turn, people, len(deck),stacked_coin,screen,n)
                     if not people[turn].coin:  # 칩없으면 바로 끝
                         print("%dp님, 당신은 칩이 없습니다." % (turn + 1), end=' ')
                         break
@@ -84,7 +83,7 @@ if __name__ == '__main__':
                 #여기서 띄우기 - 피플 클래스에 추가해서 하자, 휴먼 클래스에서는 현재 보유 카드 띄우기
 
             screen.blit(result_screen, (0, 0))
-           pygame.display.flip()
+            pygame.display.flip()
 
             ranking(people, n, screen)
     pygame.quit()
