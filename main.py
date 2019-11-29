@@ -57,7 +57,8 @@ if __name__ == '__main__':
                 while chk:  # 낙찰받는 사람 결정
                     turn += 1  # 다음 사람으로 넘기기
                     turn = turn % n  # 계산
-                    turn_change(turn, len(deck),stacked_coin)
+                    changed_player = turn_change(turn, people, len(deck),stacked_coin)
+                    update(changed_player)
                     if not people[turn].coin:  # 칩없으면 바로 끝
                         print("%dp님, 당신은 칩이 없습니다." % (turn + 1), end=' ')
                         break

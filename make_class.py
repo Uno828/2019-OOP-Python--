@@ -11,7 +11,8 @@ class Picture:
 
 
 class human(Picture):
-    def __init__(self, player, coin):
+    def __init__(self, player, coin, x, y):
+        Picture.__init__(self, x, y)
         self.player = player + 1  # player 몇번째 사람인가?
         self.coin = coin  # 칩의 개수
         self.card = []  # 보유한 카드
