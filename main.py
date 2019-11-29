@@ -58,6 +58,7 @@ if __name__ == '__main__':
                     turn += 1  # 다음 사람으로 넘기기
                     turn = turn % n  # 계산
                     turn_change(turn, people, len(deck),stacked_coin,screen,n)
+                    func.card_show(num, screen)
                     if not people[turn].coin:  # 칩없으면 바로 끝
                         print("%dp님, 당신은 칩이 없습니다." % (turn + 1), end=' ')
                         break

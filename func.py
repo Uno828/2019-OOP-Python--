@@ -1,7 +1,7 @@
 import pygame
 import make_class
 
-Black = (0, 0, 0)
+Black = (100, 100, 100)
 
 
 def num_check(event):
@@ -14,7 +14,6 @@ def num_check(event):
             return 6
         elif event.key == pygame.K_7:
             return 7
-
     return None
 
 
@@ -51,30 +50,6 @@ def player_number(nowPlaying, screen):
     text_show(nowPlaying, 20, 236.46, 38.22, screen)
 
 
-# def card_text(n, people, screen):
-#     cardWhich = [[248.279, 162.888], [248.279, 267.055], [248.279, 377.222], [629.946, 162.888], [622.946, 267.0550],
-#                  [629.946, 377.222]]
-#     for i in range(n):
-#         # cards = 순서에 맞는 플레이어가 가지고 있는 카드 목록
-#         text_show(people[i].card, 10, cardWhich[i][0], cardWhich[i][1], screen)
-
-
-# def current_chip(chipNum, screen):
-#     text_show(chipNum, 32, 822.2, 386.25, screen)
-#
-#
-# def remain_card(remain, screen):
-#     text_show(remain, 32, 857.44, 495.25, screen)
-#
-#
-# def current_score(myscore, screen):
-#     text_show(myscore, 32, 859.44, 610.25, screen)
-#
-#
-# def my_chip(myChip, screen):
-#     text_show(myChip, 32, 150, 150, screen)
-#
-
 # 출처: https://devnauts.tistory.com/61 [devnauts]
 
 def ranking(people, n, screen):
@@ -109,6 +84,8 @@ current_score_loc = [859.44, 610.25]
 show_title_loc = [236.46,38.22]
 
 def turn_change(turn, people, remain_card, remain_coin,screen,n):  # turn은 바뀐 턴을 받는 것임
+    main_screen = pygame.image.load("image/ing.png")
+    image_show(main_screen,0,0,screen)
     changed_player = make_class.human(turn, people[turn].coin, remain_card, remain_coin)
     card_list=[]
     a=0
@@ -121,11 +98,15 @@ def turn_change(turn, people, remain_card, remain_coin,screen,n):  # turn은 바
     player_logo = pygame.image.load("image/p"+str(turn+1)+"- 작은 버전.png")
     image_show(player_logo,current_player_loc[0],current_player_loc[1], screen)
 
-    text_show(str(changed_player.coin), 10,current_chip_loc[0],current_chip_loc[1],screen)
-    changed_player.calculate()
-    text_show(str(changed_player.score), 10, current_score_loc[0],current_score_loc[1],screen)
+    text_show(str(changed_player.coin), 40,current_chip_loc[0],current_chip_loc[1],screen)
+    people[turn].calculate()
+    text_show(str(people[turn].score), 40, current_score_loc[0],current_score_loc[1],screen)
 
-    text_show(str(turn+1),10, show_title_loc[0],show_title_loc[1],screen)
+    text_show(str(turn+1),40, show_title_loc[0],show_title_loc[1],screen)
+
+    text_show(str(remain_coin), 50, 822.2, 386.25, screen)
+
+    text_show(str(remain_card), 50, 857.44, 495.25, screen)
 
     # for i in range(n):
     #     if i != turn:
