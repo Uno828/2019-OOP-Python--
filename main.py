@@ -7,7 +7,6 @@ import func
 if __name__ == '__main__':
 
     pygame.init()
-    chip = pygame.image.load("image/chip.png")
     board = pygame.image.load("image/board.png")
     start_screen = pygame.image.load("image/start.png")
     main_screen = pygame.image.load("image/main.png")
@@ -36,7 +35,7 @@ if __name__ == '__main__':
 
         if n is not None:
             n = int(n)
-            print(n)
+            # print(n)
             screen.blit(main_screen, (0, 0))
             pygame.display.flip()
             for i in range(n):  # n명 가정, 0~n-1
