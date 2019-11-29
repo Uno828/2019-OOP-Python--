@@ -26,75 +26,52 @@ def auction(event):
     return -1
 
 
-def card_show(card_num, screen):  # 화면에 선택된 카드를 띄워주는 함수
+def card_show(card_num, screen):
     card = pygame.image.load("image/" + str(-card_num) + "- 큰 버전.png")
-    screen.blit(card, (784, 58))
+    image_show(image, 784, 58, screen):
+
+
+def image_show(image, x, y, screen):
+    screen.blit(player, (x, y))
     pygame.display.flip()
 
-def player_show(player, x,y,screen):
-    screen.blit(player,(x,y))
-    pygame.display.flip()
 
-def card_text(n, screen):
+def text_show(txt, size, x, y, screen):
+    fontObj = pygame.font.Font('myfont.ttf', size)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 size로 한다
+    textSurfaceObj = fontObj.render(txt, True,
+                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
+    # 나타낸다
+    textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
+    textRectObj.center = (x, y)  # 텍스트 객체의 출력 중심 좌표를 설정한다
+    screen.blit(textSurfaceObj, textRectObj)
+
+
+def player_number(nowPlaying, screen):
+    text_show(nowPlaying, 20, 236.46, 38.22, screen)
+
+
+def card_text(n, people, screen):
     cardWhich = [[248.279, 162.888], [248.279, 267.055], [248.279, 377.222], [629.946, 162.888], [622.946, 267.0550],
                  [629.946, 377.222]]
-    fontObj = pygame.font.Font('myfont.ttf', 32)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 32로 한다
-    textSurfaceObj = fontObj.render('Hello Font!', True,
-                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
-    # 나타낸다
-    textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
-    textRectObj.center = (cardWhich[n - 1][0], cardWhich[n - 1][1])  # 텍스트 객체의 출력 중심 좌표를 설정한다
-    screen.blit(textSurfaceObj, textRectObj)
+    for i in range n :
+        # cards = 순서에 맞는 플레이어가 가지고 있는 카드 목록
+        text_show(cards, 10, cardWhich[i][0], cardWhich[i][1], screen)
 
 
-def current_chip(screen):
-    fontObj = pygame.font.Font('myfont.ttf', 32)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 32로 한다
-    textSurfaceObj = fontObj.render('Hello Font!', True,
-                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
-    # 나타낸다
-    textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
-    textRectObj.center = (822.2, 386.25)  # 텍스트 객체의 출력 중심 좌표를 설정한다
-    screen.blit(textSurfaceObj, textRectObj)
+def current_chip(chipNum, screen):
+    text_show(chipNum, 32, 822.2, 386.25, screen)
 
 
-def player_number(screen):
-    fontObj = pygame.font.Font('myfont.ttf', 32)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 32로 한다
-    textSurfaceObj = fontObj.render('Hello Font!', True,
-                                    (0, 0, 255))  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
-    # 나타낸다
-    textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
-    textRectObj.center = (236.46, 38.22)  # 텍스트 객체의 출력 중심 좌표를 설정한다
-    screen.blit(textSurfaceObj, textRectObj)
+def remain_card(remain, screen):
+    text_show(remain, 32, 857.44, 495.25, screen)
 
 
-def remain_card(screen):
-    fontObj = pygame.font.Font('myfont.ttf', 32)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 32로 한다
-    textSurfaceObj = fontObj.render('Hello Font!', True,
-                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
-    # 나타낸다
-    textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
-    textRectObj.center = (857.44, 495.25)  # 텍스트 객체의 출력 중심 좌표를 설정한다
-    screen.blit(textSurfaceObj, textRectObj)
+def current_score(myscore, screen):
+    text_show(myscore, 32, 859.44, 610.25, screen)
 
 
-def current_score(screen):
-    fontObj = pygame.font.Font('myfont.ttf', 32)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 32로 한다
-    textSurfaceObj = fontObj.render('Hello Font!', True,
-                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
-    # 나타낸다
-    textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
-    textRectObj.center = (859.44, 610.25)  # 텍스트 객체의 출력 중심 좌표를 설정한다
-    screen.blit(textSurfaceObj, textRectObj)
-
-
-def my_chip(screen):
-    fontObj = pygame.font.Font('myfont.ttf', 32)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 32로 한다
-    textSurfaceObj = fontObj.render('Hello Font!', True,
-                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
-    # 나타낸다
-    textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
-    textRectObj.center = (150, 150)  # 텍스트 객체의 출력 중심 좌표를 설정한다
-    screen.blit(textSurfaceObj, textRectObj)
+def my_chip(myChip, screen):
+    text_show(myChip, 32, 150, 150, screen)
 
 
 # 출처: https://devnauts.tistory.com/61 [devnauts]
@@ -130,10 +107,10 @@ def ranking(people, n, screen):
         sixth = pygame.image.load("p" + str(people[5].player) + "- 작은 결과.png")
         seventh = pygame.image.load("p" + str(people[6].player) + "- 작은 결과.png")
 
-    player_show(first, 403.024, 256.374,screen)
-    player_show(second, 202.524, 256.374,screen)
-    player_show(third, 603.524, 256.374,screen)
-    player_show(fourth, 179.978, 394.752,screen)
-    player_show(fifth, 336.978, 394.752,screen)
-    player_show(sixth, 503.978, 394.752,screen)
-    player_show(seventh, 659.978, 394.752,screen)
+    image_show(first, 403.024, 256.374, screen)
+    image_show(second, 202.524, 256.374, screen)
+    image_show(third, 603.524, 256.374, screen)
+    image_show(fourth, 179.978, 394.752, screen)
+    image_show(fifth, 336.978, 394.752, screen)
+    image_show(sixth, 503.978, 394.752, screen)
+    image_show(seventh, 659.978, 394.752, screen)
