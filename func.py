@@ -89,40 +89,9 @@ def ranking(people, n, screen):
     for i in range(7-n):
         lank.append(pygame.image.load("p_emt- 작은 결과.png"))
 
-    # first = pygame.image.load("p" + str(people[0].player) + "- 큰 결과.png")
-    # second = pygame.image.load("p" + str(people[1].player) + "- 큰 결과.png")
-    # third = pygame.image.load("p" + str(people[2].player) + "- 큰 결과.png")
-    # fourth = pygame.image.load("p" + str(people[3].player) + "- 작은 결과.png")
-    #
-    # if n == 4:
-    #     fifth = pygame.image.load("p_emt- 작은 결과.png")
-    #     sixth = pygame.image.load("p_emt- 작은 결과.png")
-    #     seventh = pygame.image.load("p_emt- 작은 결과.png")
-    #
-    # if n == 5:
-    #     fifth = pygame.image.load("p" + str(people[4].player) + "- 작은 결과.png")
-    #     sixth = ("p_emt- 작은 결과.png")
-    #     seventh = ("p_emt- 작은 결과.png")
-    #
-    # if n == 6:
-    #     fifth = pygame.image.load("p" + str(people[4].player) + "- 작은 결과.png")
-    #     sixth = pygame.image.load("p" + str(people[5].player) + "- 작은 결과.png")
-    #     seventh = ("p_emt- 작은 결과.png")
-    #
-    # if n == 7:
-    #     fifth = pygame.image.load("p" + str(people[4].player) + "- 작은 결과.png")
-    #     sixth = pygame.image.load("p" + str(people[5].player) + "- 작은 결과.png")
-    #     seventh = pygame.image.load("p" + str(people[6].player) + "- 작은 결과.png")
-
     locx=[403.024, 202.524, 603.524, 179.978, 336.978, 503.978, 659.978]
     locy=[256.374, 256.374, 256.374, 394.752, 394.752, 394.752, 394.752]
     for i in range(7):
         image_show(lank[i],locx[i],locy[i],screen)
 
-    # image_show(first, 403.024, 256.374, screen)
-    # image_show(second, 202.524, 256.374, screen)
-    # image_show(third, 603.524, 256.374, screen)
-    # image_show(fourth, 179.978, 394.752, screen)
-    # image_show(fifth, 336.978, 394.752, screen)
-    # image_show(sixth, 503.978, 394.752, screen)
-    # image_show(seventh, 659.978, 394.752, screen)
+def turn_change(turn, people):
