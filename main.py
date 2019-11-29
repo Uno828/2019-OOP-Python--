@@ -11,7 +11,7 @@ if __name__ == '__main__':
     board = pygame.image.load("image/board.png")
     start_screen = pygame.image.load("image/start.png")
     main_screen = pygame.image.load("image/main.png")
-    result_screen = pygame.image.load("image/result7.png")
+    result_screen = pygame.image.load("image/result_v3.png")
     run = True
     width, height = 960, 720
     screen = pygame.display.set_mode((width, height))
