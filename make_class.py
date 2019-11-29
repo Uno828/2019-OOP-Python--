@@ -1,7 +1,7 @@
 import random
 import time
 import pygame
-from function import *
+from func import *
 
 
 class human:
