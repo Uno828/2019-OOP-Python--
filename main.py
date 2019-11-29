@@ -7,6 +7,7 @@ import func
 if __name__ == '__main__':
 
     pygame.init()
+    chip = pygame.image.load("image/chip.png")
     board = pygame.image.load("image/board.png")
     start_screen = pygame.image.load("image/start.png")
     main_screen = pygame.image.load("image/main.png")
@@ -35,7 +36,6 @@ if __name__ == '__main__':
 
         if n is not None:
             n = int(n)
-            # print(n)
             screen.blit(main_screen, (0, 0))
             pygame.display.flip()
             for i in range(n):  # n명 가정, 0~n-1
@@ -57,30 +57,33 @@ if __name__ == '__main__':
                 while chk:  # 낙찰받는 사람 결정
                     turn += 1  # 다음 사람으로 넘기기
                     turn = turn % n  # 계산
+                    turn_change(turn, people)
                     if not people[turn].coin:  # 칩없으면 바로 끝
                         print("%dp님, 당신은 칩이 없습니다." % (turn + 1), end=' ')
                         break
 
                     while not (chk ==0 or chk ==1):
-                        for event in pygame.event.get():
+                        for event in pygame.event.get(): # auction 함수를 통해 낙찰 여부 입력
                             if chk!=-1:
                                 chk = chk
                             else:
                                 chk = func.auction(event)
 
-                    if chk:
+                    if chk: #chk가 1일때, 즉 패스한 경우
                         stacked_coin += 1  # 패스하면, 칩 개수 올리고
                         people[turn].coin -= 1  # 가진 칩 줄이기
                         print(people[turn].coin)
                         chk = -1
 
+                #chk가 0일 때, 즉 숫자 카드를 낙찰받은 경우
                 print("%dp님, 낙찰되었습니다." % (turn + 1))  # 낙찰된 상황
                 people[turn].coin += stacked_coin  # 칩 개수만큼 올렺고
                 people[turn].card.append(num)  # 갖고 있는 카드에 추가
                 deck.remove(num)  # 방금 카드 지워버리기
+                #여기서 띄우기 - 피플 클래스에 추가해서 하자, 휴먼 클래스에서는 현재 보유 카드 띄우기
 
             screen.blit(result_screen, (0, 0))
-            pygame.display.flip()
+           pygame.display.flip()
 
             ranking(people, n, screen)
     pygame.quit()
