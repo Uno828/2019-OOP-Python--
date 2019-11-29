@@ -96,7 +96,7 @@ def ranking(people, n, screen):
         image_show(lank[i], locx[i], locy[i], screen)
 
 
-currnet_player_loc = [85, 429.4]
+current_player_loc = [85, 429.4]
 current_chip_loc = [181.69, 668.75]
 current_card_loc = [[340.725, 446.833], [410.903, 446.833], [480.904, 446.833], [550.904, 446.833], [620.904, 446.833],
                     [690.904, 446.833], [270.904, 530.333], [340.725, 530.333], [410.904, 530.333], [480.904, 530.333],
@@ -111,4 +111,4 @@ player_card_loc = [[248.279, 162.888], [248.279, 267.055], [248.279, 377.222], [
 def turn_change(turn, people, remain_card, remain_coin):  # turn은 바뀐 턴을 받는 것임
     return make_class().human(turn, people[turn].coin, remain_card, remain_coin)
 
-def update(chage_player):
+def update(chaged_player):
