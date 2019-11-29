@@ -1,5 +1,7 @@
 import pygame
 
+Black = (0, 0, 0)
+
 def num_check(event):
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_4:
@@ -26,41 +28,95 @@ def card_show(card_num, screen): #화면에 선택된 카드를 띄워주는 함
     screen.blit(card, (784, 58))
     pygame.display.flip()
 
+def card_text(n, screen):
+    cardWhich = [[248.279, 162.888], [248.279, 267.055], [248.279, 377.222], [629.946, 162.888], [622.946, 267.0550],
+                 [629.946, 377.222]]
+    fontObj = pygame.font.Font('myfont.ttf', 32)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 32로 한다
+    textSurfaceObj = fontObj.render('Hello Font!', True,
+                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
+    # 나타낸다
+    textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
+    textRectObj.center = (cardWhich[n-1][0], cardWhich[n-1][1])  # 텍스트 객체의 출력 중심 좌표를 설정한다
+    screen.blit(textSurfaceObj, textRectObj)
 
-def ranking(people, n):
+
+def current_chip(screen):
+    fontObj = pygame.font.Font('myfont.ttf', 32)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 32로 한다
+    textSurfaceObj = fontObj.render('Hello Font!', True,
+                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
+    # 나타낸다
+    textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
+    textRectObj.center = (822.2, 386.25)  # 텍스트 객체의 출력 중심 좌표를 설정한다
+    screen.blit(textSurfaceObj, textRectObj)
+
+
+def remain_card(screen):
+    fontObj = pygame.font.Font('myfont.ttf', 32)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 32로 한다
+    textSurfaceObj = fontObj.render('Hello Font!', True,
+                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
+    # 나타낸다
+    textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
+    textRectObj.center = (857.44, 495.25)  # 텍스트 객체의 출력 중심 좌표를 설정한다
+    screen.blit(textSurfaceObj, textRectObj)
+
+
+def current_score(screen):
+    fontObj = pygame.font.Font('myfont.ttf', 32)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 32로 한다
+    textSurfaceObj = fontObj.render('Hello Font!', True,
+                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
+    # 나타낸다
+    textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
+    textRectObj.center = (859.44, 610.25)  # 텍스트 객체의 출력 중심 좌표를 설정한다
+    screen.blit(textSurfaceObj, textRectObj)
+
+
+def my_chip(screen):
+    fontObj = pygame.font.Font('myfont.ttf', 32)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 32로 한다
+    textSurfaceObj = fontObj.render('Hello Font!', True,
+                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
+    # 나타낸다
+    textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
+    textRectObj.center = (150, 150)  # 텍스트 객체의 출력 중심 좌표를 설정한다
+    screen.blit(textSurfaceObj, textRectObj)
+
+# 출처: https://devnauts.tistory.com/61 [devnauts]
+
+def ranking(people, n, screen):
     for i in range(n):
         people[i].calculate()
 
     people.sort(key=lambda rank: rank.score, reverse=True)
 
-    pn_1 = []
-    pn_2 = []
-    pn_3 = []
-    pn_4 = []
+    first = pygame.image.load("p"+str(people[0].player)+"- 큰 결과.png")
+    second = pygame.image.load("p"+str(people[1].player)+"- 큰 결과.png")
+    third = pygame.image.load("p"+str(people[2].player)+"- 큰 결과.png")
+    fourth = pygame.image.load("p"+str(people[3].player)+"- 작은 결과.png")
 
-    for i in range(1,8):
-        pn_1.append( pygame.image.load("p"+str(i+1)+"- 작은 결과.png"))
+    if n == 4:
+        fifth = pygame.image.load("p_emt- 작은 결과.png")
+        sixth = pygame.image.load("p_emt- 작은 결과.png")
+        seventh = pygame.image.load("p_emt- 작은 결과.png")
 
-    for i in range(1,8):
-        pn_1.append( pygame.image.load("p"+str(i+1)+"- 작은 결과.png"))
+    if n == 5:
+        fifth = pygame.image.load("p"+str(people[4].player)+"- 작은 결과.png")
+        sixth = ("p_emt- 작은 결과.png")
+        seventh = ("p_emt- 작은 결과.png")
 
-    for i in range(1,8):
-        pn_1.append( pygame.image.load("p"+str(i+1)+"- 작은 결과.png"))
+    if n == 6:
+        fifth = pygame.image.load("p"+str(people[4].player)+"- 작은 결과.png")
+        sixth = pygame.image.load("p"+str(people[5].player)+"- 작은 결과.png")
+        seventh = ("p_emt- 작은 결과.png")
 
-    for i in range(1,8):
-        pn_1.append( pygame.image.load("p"+str(i+1)+"- 작은 결과.png"))
+    if n == 7:
+        fifth = pygame.image.load("p" + str(people[4].player) + "- 작은 결과.png")
+        sixth = pygame.image.load("p" + str(people[5].player) + "- 작은 결과.png")
+        seventh = pygame.image.load("p" + str(people[6].player) + "- 작은 결과.png")
 
+    player_show(first, 403.024, 256.374)
+    player_show(second, 202.524, 256.374)
+    player_show(third, 603.524, 256.374)
+    player_show(fourth, 179.978, 394.752)
+    player_show(fifth, 336.978, 394.752)
+    player_show(sixth, 503.978, 394.752)
+    player_show(seventh, 659.978, 394.752)
 
-    p1 = pygame.image.load("p1")
-    p2 = pygame.image.load("p2")
-    p3 = pygame.image.load("p3")
-    p4 = pygame.image.load("p4")
-    p5 = pygame.image.load("p5")
-    p6 = pygame.image.load("p6")
-    p7 = pygame.image.load("p7")
-    player_empty = pygame.image.load("p_emt")
-
-    """
-    for i in range(len(people)):
-        print("{0}등 - {1}p : {2}points ".format(i + 1, people[i].player, people[i].score))
-    """
