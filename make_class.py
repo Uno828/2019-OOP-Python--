@@ -27,3 +27,4 @@ class human(Picture):
             else:
                 self.score += self.card[i]
             back_num = self.card[i]
+
