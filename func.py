@@ -31,6 +31,9 @@ def card_show(card_num, screen):  # 화면에 선택된 카드를 띄워주는 �
     screen.blit(card, (784, 58))
     pygame.display.flip()
 
+def player_show(player, x,y,screen):
+    screen.blit(player,(x,y))
+    pygame.display.flip()
 
 def card_text(n, screen):
     cardWhich = [[248.279, 162.888], [248.279, 267.055], [248.279, 377.222], [629.946, 162.888], [622.946, 267.0550],
@@ -127,10 +130,10 @@ def ranking(people, n, screen):
         sixth = pygame.image.load("p" + str(people[5].player) + "- 작은 결과.png")
         seventh = pygame.image.load("p" + str(people[6].player) + "- 작은 결과.png")
 
-    player_show(first, 403.024, 256.374)
-    player_show(second, 202.524, 256.374)
-    player_show(third, 603.524, 256.374)
-    player_show(fourth, 179.978, 394.752)
-    player_show(fifth, 336.978, 394.752)
-    player_show(sixth, 503.978, 394.752)
-    player_show(seventh, 659.978, 394.752)
+    player_show(first, 403.024, 256.374,screen)
+    player_show(second, 202.524, 256.374,screen)
+    player_show(third, 603.524, 256.374,screen)
+    player_show(fourth, 179.978, 394.752,screen)
+    player_show(fifth, 336.978, 394.752,screen)
+    player_show(sixth, 503.978, 394.752,screen)
+    player_show(seventh, 659.978, 394.752,screen)
