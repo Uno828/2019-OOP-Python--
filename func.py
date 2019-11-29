@@ -40,7 +40,8 @@ def image_show(image, x, y, screen):
 def text_show(txt, size, x, y, screen):
     locus = [(822.2, 386.25), (857.44, 495.25), (859.44, 610.25), (150, 150)]
     fontObj = pygame.font.Font('맑은고딕.ttf', size)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 size로 한다
-    textSurfaceObj = fontObj.render(txt, True,Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
+    textSurfaceObj = fontObj.render(txt, True,
+                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
     # 나타낸다
     textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
     textRectObj.center = (x, y)  # 텍스트 객체의 출력 중심 좌표를 설정한다
@@ -106,30 +107,28 @@ player_loc = [[18.544, 114.832], [18.544, 219.832], [18.544, 820.832], [401.794,
 player_card_loc = [[248.279, 162.888], [248.279, 267.055], [248.279, 377.222], [629.946, 162.888], [629.946, 267.055],
                    [629.946, 377.222]]
 current_score_loc = [859.44, 610.25]
-show_title_loc = [236.46,38.22]
+show_title_loc = [236.46, 38.22]
 
-def turn_change(turn, people, remain_card, remain_coin,screen,n):  # turn은 바뀐 턴을 받는 것임
+
+def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 바뀐 턴을 받는 것임
     changed_player = make_class.human(turn, people[turn].coin, remain_card, remain_coin)
-    card_list=[]
-    a=0
+    card_list = []
+
     for i in people[turn].card:
         card_list.append(pygame.image.load("image/" + str(-i) + "- 작은버전.png"))
-        a+=1
-    for i in range(a):
-        image_show(card_list[i],current_card_loc[i][0],current_card_loc[i][1],screen)
 
-    player_logo = pygame.image.load("image/p"+str(turn+1)+"- 작은 버전.png")
-    image_show(player_logo,current_player_loc[0],current_player_loc[1], screen)
+    for i in range(len(people[turn].card)):
+        image_show(card_list[i], current_card_loc[i][0], current_card_loc[i][1], screen)
 
-    text_show(str(changed_player.coin), 10,current_chip_loc[0],current_chip_loc[1],screen)
+    player_logo = pygame.image.load("image/p" + str(turn + 1) + "- 작은 버전.png")
+    image_show(player_logo, current_player_loc[0], current_player_loc[1], screen)
+
+    text_show(str(changed_player.coin), 10, current_chip_loc[0], current_chip_loc[1], screen)
     changed_player.calculate()
-    text_show(str(changed_player.score), 10, current_score_loc[0],current_score_loc[1],screen)
+    text_show(str(changed_player.score), 10, current_score_loc[0], current_score_loc[1], screen)
 
-    text_show(str(turn+1),10, show_title_loc[0],show_title_loc[1],screen)
+    text_show(str(turn + 1), 10, show_title_loc[0], show_title_loc[1], screen)
 
     # for i in range(n):
     #     if i != turn:
     #
-
-
-
