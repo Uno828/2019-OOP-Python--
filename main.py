@@ -10,6 +10,7 @@ if __name__ == '__main__':
     board = pygame.image.load("image/board.png")
     start_screen = pygame.image.load("image/start.png")
     main_screen = pygame.image.load("image/main.png")
+    result_screen = pygame.image.load("image/result7.png")
     run = True
     width, height = 960, 720
     screen = pygame.display.set_mode((width, height))
@@ -77,5 +78,10 @@ if __name__ == '__main__':
                 people[turn].coin += stacked_coin  # 칩 개수만큼 올렺고
                 people[turn].card.append(num)  # 갖고 있는 카드에 추가
                 deck.remove(num)  # 방금 카드 지워버리기
+
+            screen.blit(result_screen, (0, 0))
+            pygame.display.flip()
+
+            ranking(people, n, screen)
 
     pygame.quit()
