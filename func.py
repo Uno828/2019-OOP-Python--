@@ -13,8 +13,19 @@ def num_check(event):
 
     return None
 
-def card_show(card_num): #화면에 선택된 카드를 띄워주는 함수
-    pass
+def auction(event):
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_RIGHT:
+            return 1
+        elif event.key == pygame.K_LEFT:
+            return 0
+    return -1
+
+def card_show(card_num, screen): #화면에 선택된 카드를 띄워주는 함수
+    card = pygame.image.load("image/"+str(-card_num)+"- 큰 버전.png")
+    screen.blit(card, (784, 58))
+    pygame.display.flip()
+
 
 def ranking(people, n):
     for i in range(n):
