@@ -123,11 +123,11 @@ def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 �
     player_logo = pygame.image.load("image/p" + str(turn + 1) + "- 작은 버전.png")
     image_show(player_logo, current_player_loc[0], current_player_loc[1], screen)
 
-    text_show(str(changed_player.coin), 60, current_chip_loc[0], current_chip_loc[1], screen)
+    text_show(str(changed_player.coin), 10, current_chip_loc[0], current_chip_loc[1], screen)
     changed_player.calculate()
-    text_show(str(changed_player.score), 40, current_score_loc[0], current_score_loc[1], screen)
+    text_show(str(changed_player.score), 10, current_score_loc[0], current_score_loc[1], screen)
 
-    text_show(str(turn + 1), 40, show_title_loc[0], show_title_loc[1], screen)
+    text_show(str(turn + 1), 10, show_title_loc[0], show_title_loc[1], screen)
 
     # for i in range(n):
     #     if i != turn:
