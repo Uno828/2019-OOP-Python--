@@ -1,4 +1,5 @@
 import pygame
+import time
 from make_class import *
 import func
 
@@ -83,5 +84,4 @@ if __name__ == '__main__':
             pygame.display.flip()
 
             ranking(people, n, screen)
-
     pygame.quit()

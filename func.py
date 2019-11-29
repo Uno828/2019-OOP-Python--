@@ -28,7 +28,7 @@ def auction(event):
 
 def card_show(card_num, screen):
     card = pygame.image.load("image/" + str(-card_num) + "- 큰 버전.png")
-    image_show(image, 784, 58, screen):
+    image_show(card, 784, 58, screen)
 
 
 def image_show(image, x, y, screen):
@@ -53,7 +53,7 @@ def player_number(nowPlaying, screen):
 def card_text(n, people, screen):
     cardWhich = [[248.279, 162.888], [248.279, 267.055], [248.279, 377.222], [629.946, 162.888], [622.946, 267.0550],
                  [629.946, 377.222]]
-    for i in range n :
+    for i in range(n):
         # cards = 순서에 맞는 플레이어가 가지고 있는 카드 목록
         text_show(cards, 10, cardWhich[i][0], cardWhich[i][1], screen)
 
