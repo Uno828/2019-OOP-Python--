@@ -5,9 +5,10 @@ from func import *
 
 
 class Picture:
-    def __init__(self):
-        self.remain_card = 33
-        self.remain_coin = 0
+    def __init__(self, x, y):
+        self.remain_card = x
+        self.remain_coin = y
+
 
 class human(Picture):
     def __init__(self, player, coin):
@@ -27,4 +28,3 @@ class human(Picture):
             else:
                 self.score += self.card[i]
             back_num = self.card[i]
-
