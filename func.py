@@ -69,10 +69,6 @@ def text_show(txt, size, x, y, screen):  # 출처: https://devnauts.tistory.com/
     screen.blit(textSurfaceObj, textRectObj)
 
 
-def player_number(nowPlaying, screen):
-    text_show(nowPlaying, 20, 236.46, 38.22, screen)
-
-
 def ranking(people, n, screen):
     for i in range(n):
         people[i].calculate()
