@@ -66,7 +66,7 @@ if __name__ == '__main__':
                     turn_change(turn, people, len(deck), stacked_coin, screen, n)
                     func.card_show(num, screen)
                     if not people[turn].coin:  # 칩없으면 바로 끝
-                        screen.blit(warning_1, (271,289))
+                        screen.blit(warning_1, (44.5,212.5))
                         pygame.display.flip()
                         pygame.time.delay(2000)
                         break
@@ -85,22 +85,24 @@ if __name__ == '__main__':
                         chk = -1
 
                 # chk가 0일 때, 즉 숫자 카드를 낙찰받은 경우
+                if len(people[turn].card)>=20:
+                    screen.blit(warning_2, (44.5,166))
+                    pygame.display.flip()
+                    res = 0
+                    while not res == 1:
+                        for event in pygame.event.get():
+                            if res != 0:
+                                res = res
+                            else:
+                                res = func.endgame(event)
+                    run = False
+
                 people[turn].coin += stacked_coin  # 칩 개수만큼 올렺고
                 people[turn].card.append(num)  # 갖고 있는 카드에 추가
                 deck.remove(num)  # 방금 카드 지워버리기
                 # 여기서 띄우기 - 피플 클래스에 추가해서 하자, 휴먼 클래스에서는 현재 보유 카드 띄우기
 
-            res = 0
-            if len(deck)==0:
-                screen.blit(warning_2, (271,267))
-                pygame.display.flip()
-                while not res == 1:
-                    for event in pygame.event.get():
-                        if res != 0:
-                            res = res
-                        else:
-                            res = func.endgame(event)
-                run = False
+
             screen.blit(result_screen, (0, 0))
             pygame.display.flip()
 
