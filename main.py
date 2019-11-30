@@ -98,15 +98,11 @@ if __name__ == '__main__':
                         stacked_coin += 1  # 패스하면, 칩 개수 올리고
                         people[turn].coin -= 1  # 가진 칩 줄이기
                         chk = -1
-                        screen.blit(wait_3_screen, (0, 0))
-                        pygame.display.flip()
-                        pygame.time.delay(1000)
-                        screen.blit(wait_2_screen, (0, 0))
-                        pygame.display.flip()
-                        pygame.time.delay(1000)
-                        screen.blit(wait_1_screen, (0, 0))
-                        pygame.display.flip()
-                        pygame.time.delay(1000)
+                        for i in range(3,-1):
+                            wait_screen = pygame.image.load("image/wait_"+str(i)+".png")
+                            screen.blit(wait_screen, (0, 0))
+                            pygame.display.flip()
+                            pygame.time.delay(1000)
 
                 # chk가 0일 때, 즉 숫자 카드를 낙찰받은 경우
                 if len(people[turn].card)>=20:
@@ -132,7 +128,6 @@ if __name__ == '__main__':
             pygame.display.flip()
 
             ranking(people, n, screen)
-            # pygame.time.delay(2000)
 
             res = 0
             while not res == 1:
