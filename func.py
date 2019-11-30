@@ -111,8 +111,25 @@ def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 �
 
     text_show(str(remain_card), 50, 857.44, 495.25, screen)  # 남은 카드의 수
 
-    for j in range(n):
+    chk = turn + 1
+    chk %= n
+
+    while chk - turn:
+        k = (chk - turn - 1) % n
         A = ''
-        for i in people[j].card:
-            A = A + str(i) + ' '
-        text_show(str(A), 10, player_card_loc[j][0], player_card_loc[j][1], screen)
+        B = ''
+        for i in people[chk].card:
+            if len(A) > 40:
+                B = B + str(i) + '  '
+            else:
+                A = A + str(i) + '  '
+        if len(A) <= 40:
+            text_show(str(A), 12, player_card_loc[k][0], player_card_loc[k][1], screen)
+
+        else:
+
+            text_show(str(A), 12, player_card_loc[k][0], player_card_loc[k][1] - 15, screen)
+            text_show(str(B), 12, player_card_loc[k][0], player_card_loc[k][1] + 15, screen)
+
+        chk += 1
+        chk %= n
