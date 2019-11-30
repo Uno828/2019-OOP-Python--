@@ -99,7 +99,7 @@ if __name__ == '__main__':
                         people[turn].coin -= 1  # 가진 칩 줄이기
                         chk = -1
                         for i in range(3,-1):
-                            wait_screen = pygame.image.load("image/wait_"+str(i)+".png")
+                            wait_screen = pygame.image.load("image/wait_"+str(i+1)+".png")
                             screen.blit(wait_screen, (0, 0))
                             pygame.display.flip()
                             pygame.time.delay(1000)
