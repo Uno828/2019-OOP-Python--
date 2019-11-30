@@ -1,5 +1,6 @@
 import pygame
 import make_class
+import time
 
 Black = (50, 50, 50)
 
@@ -18,6 +19,23 @@ player_card_loc = [[248.279, 162.888], [248.279, 267.055], [248.279, 377.222], [
                    [629.946, 377.222]]
 current_score_loc = [859.44, 610.25]
 show_title_loc = [237, 36]
+
+
+
+def music():
+    pygame.mixer.init()
+
+    blueming = pygame.mixer.Sound("Blueming.wav")
+    time_out = pygame.mixer.Sound("시간의 바깥.wav")
+    love_poem = pygame.mixer.Sound("Love Poem.wav")
+
+    while True:
+        blueming.play()
+        time.sleep(249.0)
+        time_out.play()
+        time.sleep(330.0)
+        love_poem.play()
+        time.sleep(268.0)
 
 
 def num_check(event):
