@@ -25,13 +25,13 @@ show_title_loc = [237, 36]
 def music():
     pygame.mixer.init()
 
-    blueming = pygame.mixer.Sound("Blueming.wav")
+    # blueming = pygame.mixer.Sound("Blueming.wav")
     time_out = pygame.mixer.Sound("시간의 바깥.wav")
     love_poem = pygame.mixer.Sound("Love Poem.wav")
 
     while True:
-        blueming.play()
-        time.sleep(249.0)
+        # blueming.play()
+        # time.sleep(249.0)
         time_out.play()
         time.sleep(330.0)
         love_poem.play()

@@ -23,6 +23,8 @@ if __name__ == '__main__':
     n = None
     flag = False
 
+    music()
+
     while run:
 
         for event in pygame.event.get():
