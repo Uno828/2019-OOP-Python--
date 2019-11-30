@@ -7,10 +7,8 @@ import func
 if __name__ == '__main__':
 
     pygame.init()
-    chip = pygame.image.load("image/chip.png")
-    board = pygame.image.load("image/board.png")
     start_screen = pygame.image.load("image/start.png")
-    main_screen = pygame.image.load("image/ing.png")
+    main_screen = pygame.image.load("image/ing_v3.png")
     result_screen = pygame.image.load("image/result_v3.png")
     run = True
     width, height = 960, 720
@@ -58,6 +56,7 @@ if __name__ == '__main__':
                     turn += 1  # 다음 사람으로 넘기기
                     turn = turn % n  # 계산
                     turn_change(turn, people, len(deck),stacked_coin,screen,n)
+                    func.card_show(num, screen)
                     if not people[turn].coin:  # 칩없으면 바로 끝
                         print("%dp님, 당신은 칩이 없습니다." % (turn + 1), end=' ')
                         break
