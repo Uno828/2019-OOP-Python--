@@ -12,30 +12,13 @@ current_chip_loc = [181.69, 665]
 current_card_loc = [[340.725, 440], [410.903, 440], [480.904, 440], [550.904, 440], [620.904, 440],
                     [690.904, 440], [270.904, 533], [340.725, 533], [410.904, 533], [480.904, 533],
                     [550.904, 533], [620.904, 533], [690.904, 533], [270.904, 625], [340.725, 625],
-                    [410.903, 625], [480.904, 625], [550.904, 625], [620.904, 625], [690.904, 625],[0,0],[0,0]]
+                    [410.903, 625], [480.904, 625], [550.904, 625], [620.904, 625], [690.904, 625], [0, 0], [0, 0]]
 player_loc = [[18.544, 114.832], [18.544, 219.832], [18.544, 320.832], [401.794, 114.832], [401.794, 219.832],
               [401.794, 320.832]]
 player_card_loc = [[248.279, 162.888], [248.279, 267.055], [248.279, 377.222], [629.946, 162.888], [629.946, 267.055],
                    [629.946, 377.222]]
 current_score_loc = [859.44, 610.25]
 show_title_loc = [237, 36]
-
-
-
-def music():
-    pygame.mixer.init()
-
-    # blueming = pygame.mixer.Sound("Blueming.wav")
-    time_out = pygame.mixer.Sound("시간의 바깥.wav")
-    love_poem = pygame.mixer.Sound("Love Poem.wav")
-
-    while True:
-        # blueming.play()
-        # time.sleep(249.0)
-        time_out.play()
-        time.sleep(330.0)
-        love_poem.play()
-        time.sleep(268.0)
 
 
 def num_check(event):
@@ -49,7 +32,6 @@ def num_check(event):
         elif event.key == pygame.K_7:
             return 7
     return None
-
 
 
 def auction(event):
@@ -105,11 +87,8 @@ def ranking(people, n, screen):
     for i in range(n, 7):
         rank_img.append(pygame.image.load("image/p_emt- 작은 결과.png"))
 
-
-
     for i in range(7):
         image_show(rank_img[i], locx[i], locy[i], screen)
-
 
 
 def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 바뀐 턴을 받는 것임
@@ -127,7 +106,7 @@ def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 �
     player_logo = pygame.image.load("image/p" + str(turn + 1) + "- 큰 버전.png")
     image_show(player_logo, current_player_loc[0], current_player_loc[1], screen)
 
-    text_show(str(changed_player.coin), 50, current_chip_loc[0],current_chip_loc[1], screen)
+    text_show(str(changed_player.coin), 50, current_chip_loc[0], current_chip_loc[1], screen)
     people[turn].calculate()
     text_show(str(people[turn].score), 50, current_score_loc[0], current_score_loc[1], screen)
 

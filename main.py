@@ -3,7 +3,8 @@ import time
 from make_class import *
 import func
 
-if __name__ == '__main__':
+
+def main_game():
 
     pygame.init()
     start_screen = pygame.image.load("image/Title_v1.png")
@@ -36,14 +37,12 @@ if __name__ == '__main__':
 
             flag = True
 
-
-
         screen.blit(rule_screen, (0, 0))
         pygame.display.flip()
 
         people = []  # 본격적인 사람의 수
 
-        if n != None:
+        if n is not None:
             n = n
         else:
             n = num_check(event)
@@ -51,8 +50,8 @@ if __name__ == '__main__':
         if n is not None:
             n = int(n)
             for i in range(4):
-                loading =  pygame.image.load("image/loading_"+str(i+1)+".png")
-                screen.blit(loading, (0,0))
+                loading = pygame.image.load("image/loading_" + str(i + 1) + ".png")
+                screen.blit(loading, (0, 0))
                 pygame.display.flip()
                 pygame.time.delay(1000)
 
@@ -82,7 +81,7 @@ if __name__ == '__main__':
                     func.card_show(num, screen)
 
                     if not people[turn].coin:  # 칩없으면 바로 끝
-                        screen.blit(warning_1, (44.5,212.5))
+                        screen.blit(warning_1, (44.5, 212.5))
                         pygame.display.flip()
                         pygame.time.delay(2000)
                         break
@@ -109,8 +108,8 @@ if __name__ == '__main__':
                         pygame.time.delay(1000)
 
                 # chk가 0일 때, 즉 숫자 카드를 낙찰받은 경우
-                if len(people[turn].card)>=20:
-                    screen.blit(warning_2, (44.5,166))
+                if len(people[turn].card) >= 20:
+                    screen.blit(warning_2, (44.5, 166))
                     pygame.display.flip()
                     res = 0
                     while not res == 1:
@@ -126,7 +125,6 @@ if __name__ == '__main__':
                 people[turn].card.append(num)  # 갖고 있는 카드에 추가
                 deck.remove(num)  # 방금 카드 지워버리기
                 # 여기서 띄우기 - 피플 클래스에 추가해서 하자, 휴먼 클래스에서는 현재 보유 카드 띄우기
-
 
             screen.blit(result_screen, (0, 0))
             pygame.display.flip()
