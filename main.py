@@ -23,8 +23,6 @@ if __name__ == '__main__':
     n = None
     flag = False
 
-    music()
-
     while run:
 
         for event in pygame.event.get():
@@ -134,7 +132,6 @@ if __name__ == '__main__':
             pygame.display.flip()
 
             ranking(people, n, screen)
-            # pygame.time.delay(2000)
 
             res = 0
             while not res == 1:
