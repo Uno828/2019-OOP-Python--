@@ -126,17 +126,25 @@ def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 �
     while chk - turn:
         A = ''
         B = ''
+        C = ''
         for i in people[chk].card:
-            if len(A) > 40:
+            if len(B) > 25:
+                C = C + str(i) + '  '
+            elif len(A) > 25:
                 B = B + str(i) + '  '
             else:
                 A = A + str(i) + '  '
-        if len(A) <= 40:
-            text_show(str(A), 12, player_card_loc[k][0], player_card_loc[k][1], screen)
+        if len(A) <= 25:
+            text_show(str(A), 18, player_card_loc[k][0], player_card_loc[k][1], screen)
+
+        elif len(B) <= 25:
+            text_show(str(A), 18, player_card_loc[k][0], player_card_loc[k][1] - 15, screen)
+            text_show(str(B), 18, player_card_loc[k][0], player_card_loc[k][1] + 15, screen)
 
         else:
-            text_show(str(A), 12, player_card_loc[k][0], player_card_loc[k][1] - 15, screen)
-            text_show(str(B), 12, player_card_loc[k][0], player_card_loc[k][1] + 15, screen)
+            text_show(str(A), 18, player_card_loc[k][0], player_card_loc[k][1] - 30, screen)
+            text_show(str(B), 18, player_card_loc[k][0], player_card_loc[k][1], screen)
+            text_show(str(C), 18, player_card_loc[k][0], player_card_loc[k][1] + 30, screen)
 
         player_logo = pygame.image.load("image/p" + str(chk % n + 1) + "- 작은 버전.png")
         image_show(player_logo, player_loc[k][0], player_loc[k][1], screen)
