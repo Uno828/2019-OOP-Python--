@@ -43,7 +43,7 @@ def image_show(image, x, y, screen):
     pygame.display.flip()
 
 
-def text_show(txt, size, x, y, screen): # 출처: https://devnauts.tistory.com/61 [devnauts]
+def text_show(txt, size, x, y, screen):  # 출처: https://devnauts.tistory.com/61 [devnauts]
     locus = [(822.2, 386.25), (857.44, 495.25), (859.44, 610.25), (150, 150)]
     fontObj = pygame.font.Font('맑은고딕.ttf', size)  # 현재 디렉토리로부터 폰트 파일을 로딩한다. 텍스트 크기를 size로 한다
     textSurfaceObj = fontObj.render(txt, True, Black)
@@ -65,9 +65,9 @@ def ranking(people, n, screen):
 
     rank_img = []
     for i in range(3):
-        rank_img.append(pygame.image.load("image/p"+str(people[i].player)+"- 큰 결과.png"))
+        rank_img.append(pygame.image.load("image/p" + str(people[i].player) + "- 큰 결과.png"))
     for i in range(3, n):
-        rank_img.append(pygame.image.load("image/p"+str(people[i].player)+"- 작은 결과.png"))
+        rank_img.append(pygame.image.load("image/p" + str(people[i].player) + "- 작은 결과.png"))
     for i in range(n, 7):
         rank_img.append(pygame.image.load("image/p_emt- 작은 결과.png"))
 
@@ -84,7 +84,7 @@ current_card_loc = [[340.725, 440], [410.903, 440], [480.904, 440], [550.904, 44
                     [690.904, 440], [270.904, 533], [340.725, 533], [410.904, 533], [480.904, 533],
                     [550.904, 533], [620.904, 533], [690.904, 533], [270.904, 625], [340.725, 625],
                     [410.903, 625], [480.904, 625], [550.904, 625], [620.904, 625], [690.904, 625]]
-player_loc = [[18.544, 114.832], [18.544, 219.832], [18.544, 820.832], [401.794, 114.832], [401.794, 219.832],
+player_loc = [[18.544, 114.832], [18.544, 219.832], [18.544, 320.832], [401.794, 114.832], [401.794, 219.832],
               [401.794, 320.832]]
 player_card_loc = [[248.279, 162.888], [248.279, 267.055], [248.279, 377.222], [629.946, 162.888], [629.946, 267.055],
                    [629.946, 377.222]]
@@ -119,9 +119,9 @@ def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 �
 
     chk = turn + 1
     chk %= n
+    k = 0
 
     while chk - turn:
-        k = (chk - turn - 1) % n
         A = ''
         B = ''
         for i in people[chk].card:
@@ -136,11 +136,13 @@ def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 �
             text_show(str(A), 12, player_card_loc[k][0], player_card_loc[k][1] - 15, screen)
             text_show(str(B), 12, player_card_loc[k][0], player_card_loc[k][1] + 15, screen)
 
-        player_logo = pygame.image.load("image/p" + str(k + 1) + "- 작은 버전.png")
+        player_logo = pygame.image.load("image/p" + str(chk % n + 1) + "- 작은 버전.png")
         image_show(player_logo, player_loc[k][0], player_loc[k][1], screen)
 
         chk += 1
+        k += 1
         chk %= n
+        k %= n
 
 # 재우
 # 칩없을때 강제낙찰 메세지 띄우기
