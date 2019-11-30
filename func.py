@@ -133,3 +133,9 @@ def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 �
 
         chk += 1
         chk %= n
+
+
+# 칩없을때 낙찰 메세지 띄우기
+# 몰수패
+# 노래->은호
+# 랭킹 다듬기
