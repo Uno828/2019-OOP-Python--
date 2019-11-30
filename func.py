@@ -2,7 +2,6 @@ import pygame
 import make_class
 
 Black = (50, 50, 50)
-Red = (50, 0, 0)
 
 
 def num_check(event):
@@ -27,6 +26,13 @@ def auction(event):
     return -1
 
 
+def endgame(event):
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_RIGHT:
+            return 1
+    return 0
+
+
 def card_show(card_num, screen):
     card = pygame.image.load("image/" + str(-card_num) + "- 큰 버전.png")
     image_show(card, 790, 58, screen)
@@ -37,12 +43,11 @@ def image_show(image, x, y, screen):
     pygame.display.flip()
 
 
-def text_show(txt, size, x, y, screen):
+def text_show(txt, size, x, y, screen): # 출처: https://devnauts.tistory.com/61 [devnauts]
     locus = [(822.2, 386.25), (857.44, 495.25), (859.44, 610.25), (150, 150)]
-    fontObj = pygame.font.Font('맑은고딕.ttf', size)  # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 size로 한다
-    textSurfaceObj = fontObj.render(txt, True,
-                                    Black)  # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를
-    # 나타낸다
+    fontObj = pygame.font.Font('맑은고딕.ttf', size)  # 현재 디렉토리로부터 폰트 파일을 로딩한다. 텍스트 크기를 size로 한다
+    textSurfaceObj = fontObj.render(txt, True, Black)
+    # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번째는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러
     textRectObj = textSurfaceObj.get_rect()  # 텍스트 객체의 출력 위치를 가져온다
     textRectObj.center = (x, y)  # 텍스트 객체의 출력 중심 좌표를 설정한다
     screen.blit(textSurfaceObj, textRectObj)
@@ -52,27 +57,28 @@ def player_number(nowPlaying, screen):
     text_show(nowPlaying, 20, 236.46, 38.22, screen)
 
 
-# 출처: https://devnauts.tistory.com/61 [devnauts]
-
 def ranking(people, n, screen):
     for i in range(n):
         people[i].calculate()
 
     people.sort(key=lambda rank: rank.score, reverse=True)
 
-    lank = []
-    for i in range(n):
-        lank.append(pygame.image.load("p" + str(people[i].player) + "- 큰 결과.png"))
-    for i in range(7 - n):
-        lank.append(pygame.image.load("p_emt- 작은 결과.png"))
+    rank_img = []
+    for i in range(3):
+        rank_img.append(pygame.image.load("image/p"+str(people[i].player)+"- 큰 결과.png"))
+    for i in range(3, n):
+        rank_img.append(pygame.image.load("image/p"+str(people[i].player)+"- 작은 결과.png"))
+    for i in range(n, 7):
+        rank_img.append(pygame.image.load("image/p_emt- 작은 결과.png"))
 
     locx = [403.024, 202.524, 603.524, 179.978, 336.978, 503.978, 659.978]
     locy = [256.374, 256.374, 256.374, 394.752, 394.752, 394.752, 394.752]
+
     for i in range(7):
-        image_show(lank[i], locx[i], locy[i], screen)
+        image_show(rank_img[i], locx[i], locy[i], screen)
 
 
-current_player_loc = [115, 450]
+current_player_loc = [90, 426]
 current_chip_loc = [181.69, 665]
 current_card_loc = [[340.725, 440], [410.903, 440], [480.904, 440], [550.904, 440], [620.904, 440],
                     [690.904, 440], [270.904, 533], [340.725, 533], [410.904, 533], [480.904, 533],
@@ -98,7 +104,7 @@ def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 �
     for i in range(len(people[turn].card)):
         image_show(card_list[i], current_card_loc[i][0], current_card_loc[i][1], screen)
 
-    player_logo = pygame.image.load("image/p" + str(turn + 1) + "- 작은 버전.png")
+    player_logo = pygame.image.load("image/p" + str(turn + 1) + "- 큰 버전.png")
     image_show(player_logo, current_player_loc[0], current_player_loc[1], screen)
 
     text_show(str(changed_player.coin), 50, current_chip_loc[0], current_chip_loc[1], screen)
@@ -127,15 +133,26 @@ def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 �
             text_show(str(A), 12, player_card_loc[k][0], player_card_loc[k][1], screen)
 
         else:
-
             text_show(str(A), 12, player_card_loc[k][0], player_card_loc[k][1] - 15, screen)
             text_show(str(B), 12, player_card_loc[k][0], player_card_loc[k][1] + 15, screen)
+
+        player_logo = pygame.image.load("image/p" + str(k + 1) + "- 작은 버전.png")
+        image_show(player_logo, player_loc[k][0], player_loc[k][1], screen)
 
         chk += 1
         chk %= n
 
-
-# 칩없을때 낙찰 메세지 띄우기
+# 재우
+# 칩없을때 강제낙찰 메세지 띄우기
 # 몰수패
-# 노래->은호
-# 랭킹 다듬기
+
+# 은호
+# 노래
+# 사람 띄우기 마무리
+
+# 태웅
+# 랭킹 다듬기 (종료화면 무시하고 넘어가는 문제) : 해결
+# 사람 띄우기 : 사람은 표시됨, 인덱스만 수정하면 됨 (으노 부탁혀)
+
+# 7시부터 최적화
+# 9시전에 완성

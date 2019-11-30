@@ -8,7 +8,7 @@ if __name__ == '__main__':
     pygame.init()
     start_screen = pygame.image.load("image/start.png")
     main_screen = pygame.image.load("image/ing_v3.png")
-    result_screen = pygame.image.load("image/result_v3.png")
+    result_screen = pygame.image.load("image/result_v4.png")
     run = True
     width, height = 960, 720
     screen = pygame.display.set_mode((width, height))
@@ -84,4 +84,14 @@ if __name__ == '__main__':
             pygame.display.flip()
 
             ranking(people, n, screen)
+            # pygame.time.delay(2000)
+
+            res = 0
+            while not res == 1:
+                for event in pygame.event.get():
+                    if res != 0:
+                        res = res
+                    else:
+                        res = func.endgame(event)
+            run = False
     pygame.quit()
