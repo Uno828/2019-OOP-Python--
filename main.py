@@ -6,7 +6,8 @@ import func
 if __name__ == '__main__':
 
     pygame.init()
-    start_screen = pygame.image.load("image/start.png")
+    start_screen = pygame.image.load("image/Title_v1.png")
+    rule_screen = pygame.image.load("image/Rule_v1.png")
     main_screen = pygame.image.load("image/ing_v3.png")
     result_screen = pygame.image.load("image/result_v4.png")
     warning_1 = pygame.image.load("image/warning_1.png")
@@ -17,14 +18,23 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode((width, height))
 
     n = None
+    flag = False
 
     while run:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+        if not flag:
+            screen.blit(start_screen, (0, 0))
+            pygame.display.flip()
+            pygame.time.delay(2000)
 
-        screen.blit(start_screen, (0, 0))
+            flag = True
+
+
+
+        screen.blit(rule_screen, (0, 0))
         pygame.display.flip()
 
         people = []  # 본격적인 사람의 수
