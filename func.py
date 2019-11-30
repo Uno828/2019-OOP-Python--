@@ -1,7 +1,8 @@
 import pygame
 import make_class
 
-Black = (100, 100, 100)
+Black = (50, 50, 50)
+Red = (50, 0, 0)
 
 
 def num_check(event):
@@ -28,7 +29,7 @@ def auction(event):
 
 def card_show(card_num, screen):
     card = pygame.image.load("image/" + str(-card_num) + "- 큰 버전.png")
-    image_show(card, 784, 58, screen)
+    image_show(card, 790, 58, screen)
 
 
 def image_show(image, x, y, screen):
@@ -70,21 +71,21 @@ def ranking(people, n, screen):
         image_show(lank[i], locx[i], locy[i], screen)
 
 
-current_player_loc = [85, 429.4]
-current_chip_loc = [181.69, 668.75]
-current_card_loc = [[340.725, 446.833], [410.903, 446.833], [480.904, 446.833], [550.904, 446.833], [620.904, 446.833],
-                    [690.904, 446.833], [270.904, 530.333], [340.725, 530.333], [410.904, 530.333], [480.904, 530.333],
-                    [550.904, 530.333], [620.904, 530.333], [690.904, 530.333], [270.904, 623.833], [340.725, 623.833],
-                    [410.903, 623.833], [480.904, 623.833], [550.904, 623.833], [620.904, 623.833], [690.904, 623.833]]
+current_player_loc = [115, 450]
+current_chip_loc = [181.69, 665]
+current_card_loc = [[340.725, 440], [410.903, 440], [480.904, 440], [550.904, 440], [620.904, 440],
+                    [690.904, 440], [270.904, 533], [340.725, 533], [410.904, 533], [480.904, 533],
+                    [550.904, 533], [620.904, 533], [690.904, 533], [270.904, 625], [340.725, 625],
+                    [410.903, 625], [480.904, 625], [550.904, 625], [620.904, 625], [690.904, 625]]
 player_loc = [[18.544, 114.832], [18.544, 219.832], [18.544, 820.832], [401.794, 114.832], [401.794, 219.832],
               [401.794, 320.832]]
 player_card_loc = [[248.279, 162.888], [248.279, 267.055], [248.279, 377.222], [629.946, 162.888], [629.946, 267.055],
                    [629.946, 377.222]]
 current_score_loc = [859.44, 610.25]
-show_title_loc = [236.46,38.22]
+show_title_loc = [237,36]
 
 def turn_change(turn, people, remain_card, remain_coin,screen,n):  # turn은 바뀐 턴을 받는 것임
-    main_screen = pygame.image.load("image/ing.png")
+    main_screen = pygame.image.load("image/ing_v3.png")
     image_show(main_screen,0,0,screen)
     changed_player = make_class.human(turn, people[turn].coin, remain_card, remain_coin)
     card_list=[]
@@ -98,19 +99,12 @@ def turn_change(turn, people, remain_card, remain_coin,screen,n):  # turn은 바
     player_logo = pygame.image.load("image/p"+str(turn+1)+"- 작은 버전.png")
     image_show(player_logo,current_player_loc[0],current_player_loc[1], screen)
 
-    text_show(str(changed_player.coin), 40,current_chip_loc[0],current_chip_loc[1],screen)
+    text_show(str(changed_player.coin), 50,current_chip_loc[0],current_chip_loc[1],screen)
     people[turn].calculate()
-    text_show(str(people[turn].score), 40, current_score_loc[0],current_score_loc[1],screen)
+    text_show(str(people[turn].score), 50, current_score_loc[0],current_score_loc[1],screen)
 
-    text_show(str(turn+1),40, show_title_loc[0],show_title_loc[1],screen)
+    text_show(str(turn+1),38, show_title_loc[0],show_title_loc[1],screen)
 
-    text_show(str(remain_coin), 50, 822.2, 386.25, screen)
+    text_show(str(remain_coin), 50, 853, 386.25, screen)  # 배당된 칩 수
 
-    text_show(str(remain_card), 50, 857.44, 495.25, screen)
-
-    # for i in range(n):
-    #     if i != turn:
-    #
-
-
-
+    text_show(str(remain_card), 50, 857.44, 495.25, screen) # 남은 카드의 수

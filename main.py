@@ -7,10 +7,8 @@ import func
 if __name__ == '__main__':
 
     pygame.init()
-    chip = pygame.image.load("image/chip.png")
-    board = pygame.image.load("image/board.png")
     start_screen = pygame.image.load("image/start.png")
-    main_screen = pygame.image.load("image/ing.png")
+    main_screen = pygame.image.load("image/ing_v3.png")
     result_screen = pygame.image.load("image/result_v3.png")
     run = True
     width, height = 960, 720
