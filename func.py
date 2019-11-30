@@ -87,10 +87,6 @@ def text_show(txt, size, x, y, screen):  # 출처: https://devnauts.tistory.com/
     screen.blit(textSurfaceObj, textRectObj)
 
 
-def player_number(nowPlaying, screen):
-    text_show(nowPlaying, 20, 236.46, 38.22, screen)
-
-
 def ranking(people, n, screen):
     for i in range(n):
         people[i].calculate()
@@ -105,11 +101,8 @@ def ranking(people, n, screen):
     for i in range(n, 7):
         rank_img.append(pygame.image.load("image/p_emt- 작은 결과.png"))
 
-
-
     for i in range(7):
         image_show(rank_img[i], locx[i], locy[i], screen)
-
 
 
 def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 바뀐 턴을 받는 것임
