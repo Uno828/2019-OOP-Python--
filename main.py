@@ -9,6 +9,9 @@ if __name__ == '__main__':
     start_screen = pygame.image.load("image/start.png")
     main_screen = pygame.image.load("image/ing_v3.png")
     result_screen = pygame.image.load("image/result_v4.png")
+    warning_1 = pygame.image.load("image/warning_1.png")
+    warning_2 = pygame.image.load("image/warning_2.png")
+
     run = True
     width, height = 960, 720
     screen = pygame.display.set_mode((width, height))
@@ -33,6 +36,12 @@ if __name__ == '__main__':
 
         if n is not None:
             n = int(n)
+            for i in range(4):
+                loading =  pygame.image.load("image/loading_"+str(i+1)+".png")
+                screen.blit(loading, (0,0))
+                pygame.display.flip()
+                pygame.time.delay(1000)
+
             screen.blit(main_screen, (0, 0))
             pygame.display.flip()
             for i in range(n):  # n명 가정, 0~n-1
@@ -57,7 +66,9 @@ if __name__ == '__main__':
                     turn_change(turn, people, len(deck), stacked_coin, screen, n)
                     func.card_show(num, screen)
                     if not people[turn].coin:  # 칩없으면 바로 끝
-                        print("%dp님, 당신은 칩이 없습니다." % (turn + 1), end=' ')
+                        screen.blit(warning_1, (271,289))
+                        pygame.display.flip()
+                        pygame.time.delay(2000)
                         break
 
                     while not (chk == 0 or chk == 1):
@@ -74,12 +85,22 @@ if __name__ == '__main__':
                         chk = -1
 
                 # chk가 0일 때, 즉 숫자 카드를 낙찰받은 경우
-                print("%dp님, 낙찰되었습니다." % (turn + 1))  # 낙찰된 상황
                 people[turn].coin += stacked_coin  # 칩 개수만큼 올렺고
                 people[turn].card.append(num)  # 갖고 있는 카드에 추가
                 deck.remove(num)  # 방금 카드 지워버리기
                 # 여기서 띄우기 - 피플 클래스에 추가해서 하자, 휴먼 클래스에서는 현재 보유 카드 띄우기
 
+            res = 0
+            if len(deck)==0:
+                screen.blit(warning_2, (271,267))
+                pygame.display.flip()
+                while not res == 1:
+                    for event in pygame.event.get():
+                        if res != 0:
+                            res = res
+                        else:
+                            res = func.endgame(event)
+                run = False
             screen.blit(result_screen, (0, 0))
             pygame.display.flip()
 
