@@ -12,6 +12,9 @@ if __name__ == '__main__':
     result_screen = pygame.image.load("image/result_v4.png")
     warning_1 = pygame.image.load("image/warning_1.png")
     warning_2 = pygame.image.load("image/warning_2.png")
+    wait_1_screen = pygame.image.load("image/wait_1.png")
+    wait_2_screen = pygame.image.load("image/wait_2.png")
+    wait_3_screen = pygame.image.load("image/wait_3.png")
 
     run = True
     width, height = 960, 720
@@ -25,6 +28,7 @@ if __name__ == '__main__':
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+
         if not flag:
             screen.blit(start_screen, (0, 0))
             pygame.display.flip()
@@ -73,8 +77,10 @@ if __name__ == '__main__':
                 while chk:  # 낙찰받는 사람 결정
                     turn += 1  # 다음 사람으로 넘기기
                     turn = turn % n  # 계산
+
                     turn_change(turn, people, len(deck), stacked_coin, screen, n)
                     func.card_show(num, screen)
+
                     if not people[turn].coin:  # 칩없으면 바로 끝
                         screen.blit(warning_1, (44.5,212.5))
                         pygame.display.flip()
@@ -91,8 +97,16 @@ if __name__ == '__main__':
                     if chk:  # chk가 1일때, 즉 패스한 경우
                         stacked_coin += 1  # 패스하면, 칩 개수 올리고
                         people[turn].coin -= 1  # 가진 칩 줄이기
-                        print(people[turn].coin)
                         chk = -1
+                        screen.blit(wait_3_screen, (0, 0))
+                        pygame.display.flip()
+                        pygame.time.delay(1000)
+                        screen.blit(wait_2_screen, (0, 0))
+                        pygame.display.flip()
+                        pygame.time.delay(1000)
+                        screen.blit(wait_1_screen, (0, 0))
+                        pygame.display.flip()
+                        pygame.time.delay(1000)
 
                 # chk가 0일 때, 즉 숫자 카드를 낙찰받은 경우
                 if len(people[turn].card)>=20:
@@ -106,6 +120,7 @@ if __name__ == '__main__':
                             else:
                                 res = func.endgame(event)
                     run = False
+                    break
 
                 people[turn].coin += stacked_coin  # 칩 개수만큼 올렺고
                 people[turn].card.append(num)  # 갖고 있는 카드에 추가
