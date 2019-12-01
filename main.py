@@ -143,4 +143,3 @@ def main_game():
             run = False
     pygame.quit()
 
-main_game()
