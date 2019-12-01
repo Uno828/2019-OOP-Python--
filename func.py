@@ -88,7 +88,7 @@ def ranking(people, n, screen):
 
 
 def turn_change(turn, people, remain_card, remain_coin, screen, n):  # turn은 바뀐 턴을 받는 것임
-    main_screen = pygame.image.load("image/ing_v3.png")
+    main_screen = pygame.image.load("image/ing_v5.png")
     image_show(main_screen, 0, 0, screen)
     changed_player = make_class.human(turn, people[turn].coin, remain_card, remain_coin)
     card_list = []
