@@ -50,7 +50,7 @@ class human(base):
 
     def turn_change(self, turn, screen, n):
         if self.player == turn+1:
-            main_screen = pygame.image.load("image/ing_v3.png")
+            main_screen = pygame.image.load("image/ing_v5.png")
             self.image_show(main_screen, 0, 0, screen)
             card_list = []
 
