@@ -9,7 +9,7 @@ def main_game():
     pygame.init()
     start_screen = pygame.image.load("image/Title_v1.png")
     rule_screen = pygame.image.load("image/Rule_v1.png")
-    main_screen = pygame.image.load("image/ing_v3.png")
+    main_screen = pygame.image.load("image/ing_v5.png")
     result_screen = pygame.image.load("image/result_v4.png")
     warning_1 = pygame.image.load("image/warning_1.png")
     warning_2 = pygame.image.load("image/warning_2.png")

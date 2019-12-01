@@ -49,4 +49,10 @@ main (게임 규칙 구현), GUI (20%)-> 오은호
 
 비슷한 보드게임, 노땡스 룰 설명 - https://www.youtube.com/watch?v=-w7ly7Gqej8
 
+
+## 11. ㅅㅎㅂㅂ
+Game Start 를 실행하세요<br>
+신나는 게임을 즐기세요
+
 <hr>
+
