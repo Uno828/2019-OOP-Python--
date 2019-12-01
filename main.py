@@ -38,6 +38,7 @@ def main_game():
         pygame.display.flip()
 
         people = []  # 본격적인 사람의 수
+        board = base(33 ,0)
 
         if n is not None:
             n = n
@@ -65,17 +66,23 @@ def main_game():
 
             while len(deck):  # 카드가 더 이상 남아있지 않을때까지
                 num = random.choice(deck)  # 현재 카드 결정
-                func.card_show(num, screen)  # 결정된 현재 숫자를 화면에 띄워 주는 함수
+                board.card_show(num, screen)  # 결정된 현재 숫자를 화면에 띄워 주는 함수
 
                 chk = -1  # 1은 패스, 0은 낙찰
-                stacked_coin = 0  # 현재 카드에 쌓인 칩의 개수
+                board.remain_coin = 0  # 현재 카드에 쌓인 칩의 개수
                 turn -= 1
                 while chk:  # 낙찰받는 사람 결정
                     turn += 1  # 다음 사람으로 넘기기
                     turn = turn % n  # 계산
 
-                    turn_change(turn, people, len(deck), stacked_coin, screen, n)
-                    func.card_show(num, screen)
+                    people[turn].turn_change(turn,screen,n)
+                    for i in range(n):
+                        if i!=turn:
+                            people[i].turn_change(turn, screen, n)
+                    board.turn_base(screen)
+                    board.card_show(num, screen)
+                    pygame.display.flip()
+
 
                     if not people[turn].coin:  # 칩없으면 바로 끝
                         screen.blit(warning_1, (44.5, 212.5))
@@ -91,7 +98,7 @@ def main_game():
                                 chk = func.auction(event)
 
                     if chk:  # chk가 1일때, 즉 패스한 경우
-                        stacked_coin += 1  # 패스하면, 칩 개수 올리고
+                        board.remain_coin += 1  # 패스하면, 칩 개수 올리고
                         people[turn].coin -= 1  # 가진 칩 줄이기
                         chk = -1
                         for i in range(3,0,-1):
@@ -114,15 +121,17 @@ def main_game():
                     run = False
                     break
 
-                people[turn].coin += stacked_coin  # 칩 개수만큼 올렺고
+                people[turn].coin += board.remain_coin  # 칩 개수만큼 올렺고
                 people[turn].card.append(num)  # 갖고 있는 카드에 추가
                 deck.remove(num)  # 방금 카드 지워버리기
+                board.remain_card-=1
                 # 여기서 띄우기 - 피플 클래스에 추가해서 하자, 휴먼 클래스에서는 현재 보유 카드 띄우기
 
             screen.blit(result_screen, (0, 0))
             pygame.display.flip()
 
             ranking(people, n, screen)
+            pygame.display.flip()
 
             res = 0
             while not res == 1:
@@ -133,3 +142,5 @@ def main_game():
                         res = func.endgame(event)
             run = False
     pygame.quit()
+
+main_game()
